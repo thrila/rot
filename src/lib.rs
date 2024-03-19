@@ -63,7 +63,7 @@ pub fn encoded(binary_vec: Vec<u8>) -> String {
             120 => "k",
             121 => "l",
             122 => "m",
-            _ => "Only chars fro A-z allowed",
+            _ => "_",
         };
         string += a;
     }
@@ -126,7 +126,7 @@ pub fn decode(binary_vec: Vec<u8>) -> String {
             120 => "k",
             121 => "l",
             122 => "m",
-            _ => "Only chars fro A-z allowed",
+            _ => " ",
         };
         string += a;
     }
