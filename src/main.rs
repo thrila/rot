@@ -44,6 +44,6 @@ fn main() -> std::io::Result<()> {
             println!("Decoded",);
             Ok(())
         }
-        _ => Ok(()),
+        _ => Ok(println!("Use of invalid flags")),
     }
 }
