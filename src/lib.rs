@@ -1,8 +1,5 @@
 pub fn convert_to_bin(string: String) -> Vec<u8> {
-    let mut binary_vec = vec![];
-    for character in string.clone().into_bytes() {
-        binary_vec.push(character)
-    }
+    let binary_vec = string.into_bytes();
     binary_vec
 }
 
