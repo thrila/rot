@@ -6,7 +6,7 @@ use clap::Parser;
 
 use std::fs;
 use std::fs::File;
-use std::io::Write;
+use std::io::{self, Write};
 use std::path::PathBuf;
 
 #[derive(Parser, Debug)]
@@ -26,7 +26,7 @@ fn main() -> std::io::Result<()> {
     } = CliArgs::parse();
 
     match option.as_str() {
-        "e" | "encode" => {
+        "e" | "encode" | "E" => {
             let words = fs::read_to_string(target_path).expect("Should be able to read from file");
             let encod = convert_to_bin(words);
             let jargon = encoded(encod);
@@ -35,7 +35,7 @@ fn main() -> std::io::Result<()> {
             println!("Encoded");
             Ok(())
         }
-        "d" | "decode" => {
+        "d" | "decode" | "D" => {
             let words = fs::read_to_string(target_path).expect("Should be able to read from file");
             let convert_to_binary = convert_to_bin(words);
             let readable_text = decode(convert_to_binary);
@@ -44,6 +44,11 @@ fn main() -> std::io::Result<()> {
             println!("Decoded",);
             Ok(())
         }
-        _ => Ok(println!("Use of invalid flags")),
+        _ => {
+            let mut stdout = io::stdout();
+            stdout.write_all(b"Use of invalid flags\n")?;
+            stdout.flush()?;
+            Ok(())
+        }
     }
 }
